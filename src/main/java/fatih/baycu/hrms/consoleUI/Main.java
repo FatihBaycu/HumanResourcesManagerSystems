@@ -1,5 +1,6 @@
 package fatih.baycu.hrms.consoleUI;
 
+import fatih.baycu.hrms.entities.concretes.JobSeeker;
 import fatih.baycu.hrms.entities.concretes.User;
 
 public class Main {

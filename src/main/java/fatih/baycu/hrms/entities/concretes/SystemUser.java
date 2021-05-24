@@ -9,7 +9,7 @@ import javax.persistence.*;
 public @Data
 class SystemUser {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
     @Column(name="user_id")

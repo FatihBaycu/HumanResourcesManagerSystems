@@ -9,7 +9,7 @@ import javax.persistence.*;
 public @Data
 class Employer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
@@ -35,7 +35,7 @@ class Employer {
     private String emailVerified;
 
     @Column(name="password_hash")
-    private boolean passwordHash;
+    private String passwordHash;
 
 
 }

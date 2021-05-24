@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public @Data
 class User {
 
-    @GeneratedValue
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Id
     @Column(name="id")
     private int id;

@@ -1,6 +1,8 @@
 package fatih.baycu.hrms.restApi.controllers;
 
 import fatih.baycu.hrms.business.abstracts.JobService;
+import fatih.baycu.hrms.core.utilities.results.DataResult;
+import fatih.baycu.hrms.core.utilities.results.Result;
 import fatih.baycu.hrms.entities.concretes.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,15 @@ public class JobsController {
 
 
     @GetMapping("getall")
-    public List<Job> getAll(){
+    public DataResult<List<Job>> getAll(){
         return this.jobService.getAll();
     }
 
+    @GetMapping("get-by-name")
+    public DataResult<List<Job>> getByJobName(String jobName){
+        return this.jobService.getByJobName(jobName);
+    }
+
+    @PostMapping("add-job")
+    public Result add(@RequestBody Job job){return this.jobService.add(job);}
 }

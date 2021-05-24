@@ -12,7 +12,7 @@ public @Data
 class JobSeeker {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
@@ -35,7 +35,7 @@ class JobSeeker {
     private String email;
 
     @Column(name="email_verified")
-    private String emailVerified;
+    private boolean emailVerified;
 
     @Column(name="password_hash")
     private String passwordHash;

@@ -6,19 +6,23 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "activation_codes")
+@Table(name = "mail_activation_codes")
 public @Data
-class ActivationCodes {
+class ActivationCode {
      @Id
-     @GeneratedValue
+     @GeneratedValue(strategy =GenerationType.IDENTITY)
      @Column(name = "id")
     private int id;
+     
     @Column(name = "user_id")
     private int userId;
+    
     @Column(name = "code")
-    private int code;
+    private String code;
+
     @Column(name = "created_at")
     private LocalDate createdAt;
+
     @Column(name = "activate")
     private  boolean activate;
 }

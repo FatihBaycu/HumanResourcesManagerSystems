@@ -9,7 +9,7 @@ import javax.persistence.*;
 public @Data
 class SystemRole {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
