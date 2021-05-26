@@ -1,11 +1,15 @@
 package fatih.baycu.hrms.entities.concretes;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="employers")
+@NoArgsConstructor
+@AllArgsConstructor
 public @Data
 class Employer {
     @Id
@@ -32,10 +36,8 @@ class Employer {
     private String email;
 
     @Column(name="email_verified")
-    private String emailVerified;
+    private boolean emailVerified;
 
     @Column(name="password_hash")
     private String passwordHash;
-
-
 }

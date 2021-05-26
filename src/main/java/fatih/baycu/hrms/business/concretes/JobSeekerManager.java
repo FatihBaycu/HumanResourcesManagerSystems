@@ -16,13 +16,18 @@ import java.util.List;
 
 @Service
 public class JobSeekerManager implements JobSeekerService {
+
     private JobSeekerDao jobSeekerDao;
     private UserDao userDao;
     private MernisServiceAdapter mernisServiceAdapter;
     private ActivationCodeService activationCodeService;
 
     @Autowired
-    public JobSeekerManager(JobSeekerDao jobSeekerDao,UserDao userDao,MernisServiceAdapter mernisServiceAdapter,ActivationCodeService activationCodeService) {
+    public JobSeekerManager(JobSeekerDao jobSeekerDao,
+                            UserDao userDao,
+                            MernisServiceAdapter mernisServiceAdapter,
+                            ActivationCodeService activationCodeService)
+    {
         this.jobSeekerDao = jobSeekerDao;
         this.userDao=userDao;
         this.mernisServiceAdapter=mernisServiceAdapter;
@@ -37,21 +42,23 @@ public class JobSeekerManager implements JobSeekerService {
     public Result add(JobSeeker jobSeeker){
 
         if(checkValid(jobSeeker)==false){return new ErrorResult("boş alan kalmamalı");}
-        else if(!checkExistByEmail(jobSeeker.getEmail())){return  new ErrorResult("email zaten mevcut");}
-        else if(!checkExistByNatiolanityId(jobSeeker.getNatiolanityId())){return  new ErrorResult("email zaten mevcut");}
-        else if(mernisServiceAdapter.CheckIfRealPerson(jobSeeker)){return  new ErrorResult("Mernis doğrulaması başarısız.");}
+        else if(checkExistByEmail(jobSeeker.getEmail())){return  new ErrorResult("email zaten mevcut");}
+        else if(checkExistByNatiolanityId(jobSeeker.getNatiolanityId())){return  new ErrorResult("bu tc zaten mevcut");}
+        //else if(mernisServiceAdapter.CheckIfRealPerson(jobSeeker)){return  new ErrorResult("Mernis doğrulaması başarısız.");}
         else {
 
             User user = new User();
+            user.setCreatedAt(LocalDate.now());
             userDao.save(user);
 
             jobSeeker.setUserId(user.getId());
 
-            LocalDate date=LocalDate.of(2001,03,22);
-            jobSeeker.setBirthDate(date);
 
-            ActivationCode activationCode=new ActivationCode();
-            activationCodeService.sendVerifedCode(activationCode,user);
+
+            //ActivationCode activationCode=new ActivationCode();
+            //activationCodeService.sendVerifedCode(activationCode,user);
+
+            //activationCodeService.checkVerifedCode(activationCode,user,"");
 
             jobSeekerDao.save(jobSeeker);
 
@@ -77,8 +84,9 @@ public class JobSeekerManager implements JobSeekerService {
     @Override
     public Boolean checkEmailVerifedCode(JobSeeker jobSeeker) {
 
-        //DÜZENLENECEK................
-        return true;
+            activationCodeService.findActivationCodeByUserId(jobSeeker.getUserId());
+
+        return null;
     }
 
 

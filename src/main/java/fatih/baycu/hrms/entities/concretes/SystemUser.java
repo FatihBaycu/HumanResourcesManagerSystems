@@ -1,11 +1,15 @@
 package fatih.baycu.hrms.entities.concretes;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "system_users")
+@NoArgsConstructor
+@AllArgsConstructor
 public @Data
 class SystemUser {
     @Id

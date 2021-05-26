@@ -5,4 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ActivationCodeDao extends JpaRepository<ActivationCode, Integer> {
 
+    ActivationCode findActivationCodeByUserId(int id);
+
+
+
 }

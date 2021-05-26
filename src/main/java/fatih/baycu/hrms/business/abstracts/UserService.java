@@ -4,9 +4,11 @@ import fatih.baycu.hrms.core.utilities.results.DataResult;
 import fatih.baycu.hrms.core.utilities.results.Result;
 import fatih.baycu.hrms.entities.concretes.User;
 
+import java.util.*;
+
 public interface UserService {
 
     Result add(User user);
-    DataResult getAll();
+    DataResult<List<User>> getAll();
 
 }

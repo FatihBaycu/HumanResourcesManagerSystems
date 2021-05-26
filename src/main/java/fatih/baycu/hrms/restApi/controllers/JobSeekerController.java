@@ -24,19 +24,14 @@ public class JobSeekerController {
     }
 
     @PostMapping()
-    public Result<JobSeeker> add(@RequestBody JobSeeker jobSeeker){
-        return  jobSeekerService.add(jobSeeker);
-
-    }
+    public Result<JobSeeker> add(@RequestBody JobSeeker jobSeeker){return  this.jobSeekerService.add(jobSeeker);}
 
     @GetMapping("/get-by-email")
     public Boolean checkExistByEmail(String email){
-        return jobSeekerService.checkExistByEmail(email);
+        return this.jobSeekerService.checkExistByEmail(email);
     }
 
     @GetMapping("/exist-by-natiolanityid")
-    public Boolean checkExistByNatiolanityId(String natiolanityId){
-        return jobSeekerService.checkExistByNatiolanityId(natiolanityId);
-    }
+    public Boolean checkExistByNatiolanityId(String natiolanityId){return this.jobSeekerService.checkExistByNatiolanityId(natiolanityId);}
 
 }

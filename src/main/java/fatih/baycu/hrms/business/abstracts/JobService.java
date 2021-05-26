@@ -11,5 +11,6 @@ public interface JobService {
     DataResult<List<Job>> getAll();
     DataResult<List<Job>> getByJobName(String jobName);
     Result add(Job job);
+    Boolean checkExistJobName(String jobName);
 
 }

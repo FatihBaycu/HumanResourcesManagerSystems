@@ -10,6 +10,7 @@ import fatih.baycu.hrms.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.*;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
@@ -32,7 +33,7 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public DataResult getAll() {
+    public DataResult<List<User>> getAll() {
         return new SuccessDataResult(this._userDao.findAll(),"Listed");
     }
 }

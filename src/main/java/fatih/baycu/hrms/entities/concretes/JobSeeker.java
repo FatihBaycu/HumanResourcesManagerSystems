@@ -1,12 +1,16 @@
 package fatih.baycu.hrms.entities.concretes;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="job_seekers")
 public @Data
 class JobSeeker {
