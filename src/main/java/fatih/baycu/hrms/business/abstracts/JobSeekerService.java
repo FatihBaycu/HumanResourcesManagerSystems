@@ -9,8 +9,13 @@ import java.util.*;
 public interface JobSeekerService{
 
     DataResult<List<JobSeeker>> getAll();
-    Result add(JobSeeker jobSeeker);
+
     Boolean checkExistByEmail(String email);
     Boolean checkExistByNatiolanityId(String natiolanityId);
-    Boolean checkEmailVerifedCode(JobSeeker jobSeeker);
+
+    DataResult<JobSeeker> getByIdentityNumber(String identityNumber);
+
+
+    Result add(JobSeeker jobSeeker);
+    Result update(JobSeeker jobSeeker);
 }

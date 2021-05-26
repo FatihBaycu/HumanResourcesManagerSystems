@@ -27,10 +27,7 @@ public class ActivationCodeController {
             return activationCodeService.getAll();
     }
 
-    @GetMapping("get-by-user-id")
-    public DataResult<ActivationCode> getByUserId(int id){
-        return activationCodeService.findActivationCodeByUserId(id);
-    }
+
 
 
 

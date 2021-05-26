@@ -24,10 +24,10 @@ class Job {
     private String jobName;
 
     @Column(name="created_at")
-    private LocalDate createdAt;
+    private LocalDate createdAt=LocalDate.now();
 
     @Column(name="active")
-    private boolean active;
+    private boolean active=true;
 
 
 }

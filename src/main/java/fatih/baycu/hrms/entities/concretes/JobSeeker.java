@@ -1,7 +1,9 @@
 package fatih.baycu.hrms.entities.concretes;
 
+import fatih.baycu.hrms.entities.abstracts.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -11,17 +13,12 @@ import java.time.LocalDate;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Table(name="job_seekers")
-public @Data
-class JobSeeker {
+@EqualsAndHashCode(callSuper = true)
+@PrimaryKeyJoinColumn(name="user_id", referencedColumnName="id")
+public class JobSeeker extends User {
 
-    @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
-    @Column(name="id")
-    private int id;
-
-    @Column(name="user_id")
-    private int userId;
 
     @Column(name="natiolanity_id")
     private String natiolanityId;
@@ -34,15 +31,5 @@ class JobSeeker {
 
     @Column(name="birth_date")
     private LocalDate birthDate;
-
-    @Column(name="email")
-    private String email;
-
-    @Column(name="email_verified")
-    private boolean emailVerified;
-
-    @Column(name="password_hash")
-    private String passwordHash;
-
 
 }

@@ -28,7 +28,4 @@ public class MernisServiceAdapter implements CheckService {
     }
 
 
-
-//        return true;
-//    }
 }

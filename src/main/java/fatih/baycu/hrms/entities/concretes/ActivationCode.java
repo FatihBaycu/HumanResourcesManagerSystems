@@ -21,8 +21,8 @@ class ActivationCode {
     private String code;
 
     @Column(name = "created_at")
-    private LocalDate createdAt;
+    private LocalDate createdAt= LocalDate.now();;
 
     @Column(name = "activate")
-    private  boolean activate;
+    private  boolean activate=true;
 }

@@ -6,7 +6,7 @@ import fatih.baycu.hrms.core.utilities.results.*;
 import fatih.baycu.hrms.dataAccess.abstracts.EmployerDao;
 import fatih.baycu.hrms.dataAccess.abstracts.UserDao;
 import fatih.baycu.hrms.entities.concretes.Employer;
-import fatih.baycu.hrms.entities.concretes.User;
+import fatih.baycu.hrms.entities.abstracts.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,56 +15,44 @@ import java.util.Optional;
 
 @Service
 public class EmployerManager implements EmployerService {
-
-    private EmployerDao employerDao;
-    private UserDao userDao;
-    private ActivationCodeService activationCodeService;
+    private final EmployerDao employerDao;
 
     @Autowired
-    public EmployerManager(EmployerDao employerDao,UserDao userDao,ActivationCodeService activationCodeService) {
+    public EmployerManager(EmployerDao employerDao) {
         this.employerDao = employerDao;
-        this.userDao=userDao;
-        this.activationCodeService=activationCodeService;
     }
 
-    @Override
+    public DataResult<Employer> getById(int userId) {
+        var result = this.employerDao.findById(userId);
+
+        return result.isEmpty()
+                ? new ErrorDataResult<>("Kullanıcı bulunamadı")
+                : new SuccessDataResult<>(result.get(), "Kullanıcı getirildi");
+    }
+
+    public DataResult<List<Employer>> getByPersonnelActivateFalse() {
+        var result = this.employerDao.findByStatusIsFalse();
+        return result.size() > 0
+                ? new SuccessDataResult<>(result, "Onay bekleyen iş verenler")
+                : new ErrorDataResult<>("Onay bekleyen iş veren bulunamadı");
+    }
+
     public DataResult<List<Employer>> getAll() {
-        return new SuccessDataResult<List<Employer>>(employerDao.findAll());
+        var result = this.employerDao.findAll();
+
+        if (result.isEmpty())
+            return new ErrorDataResult<>("Liste boş");
+
+        return new SuccessDataResult<>(result, "Listelendi");
     }
 
-    @Override
     public Result add(Employer employer) {
-
-        if(checkEmployer(employer)){
-            User user =new User();
-            userDao.save(user);
-            employer.setUserId(user.getId());
-
-
-
-            employerDao.save(employer);
-            return new SuccessResult("Added");
-        }
-
-        return new ErrorResult("Not Added");
-
+        this.employerDao.save(employer);
+        return new SuccessResult("Eklendi");
     }
 
-    public boolean checkEmployer(Employer employer){
-
-        if(
-                employer.getEmail()!=null&&
-                employer.getCompanyName()!=null&&
-                employer.getPhoneNumber()!=null&&
-                employer.getPhoneNumber()!=null&&
-                employer.getPasswordHash()!=null
-        ){
-            return true;
-        }
-        else
-            return false;
-
-
+    public Result update(Employer employer) {
+        this.employerDao.save(employer);
+        return new SuccessResult("Güncellendi");
     }
-
 }

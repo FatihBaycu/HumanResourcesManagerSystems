@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface JobDao extends JpaRepository<Job, Integer> {
 
-    List<Job> findByJobName(String jobName);
+    Job findByJobName(String jobName);
     Boolean existsByJobName(String jobName);
 
 

@@ -23,9 +23,6 @@ public class JobSeekerController {
         return this.jobSeekerService.getAll();
     }
 
-    @PostMapping()
-    public Result<JobSeeker> add(@RequestBody JobSeeker jobSeeker){return  this.jobSeekerService.add(jobSeeker);}
-
     @GetMapping("/get-by-email")
     public Boolean checkExistByEmail(String email){
         return this.jobSeekerService.checkExistByEmail(email);

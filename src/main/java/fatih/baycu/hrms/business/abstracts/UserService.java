@@ -2,13 +2,17 @@ package fatih.baycu.hrms.business.abstracts;
 
 import fatih.baycu.hrms.core.utilities.results.DataResult;
 import fatih.baycu.hrms.core.utilities.results.Result;
-import fatih.baycu.hrms.entities.concretes.User;
+import fatih.baycu.hrms.entities.abstracts.User;
 
 import java.util.*;
 
 public interface UserService {
 
-    Result add(User user);
     DataResult<List<User>> getAll();
+    DataResult<User> getById(int id);
+    DataResult<User> getByEmail(String email);
+
+    Result add(User user);
+    Result update(User user);
 
 }

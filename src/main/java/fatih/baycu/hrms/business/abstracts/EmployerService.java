@@ -7,6 +7,10 @@ import java.util.*;
 public interface EmployerService {
 
     DataResult<List<Employer>> getAll();
+    DataResult<Employer> getById(int userId);
+    DataResult<List<Employer>> getByPersonnelActivateFalse();
+
     Result add(Employer employer);
+    Result update(Employer employer);
 
 }

@@ -27,9 +27,9 @@ public class JobManager implements JobService {
     }
 
     @Override
-    public DataResult<List<Job>> getByJobName(String jobName) {
+    public DataResult<Job> getByJobName(String jobName) {
 
-        return new SuccessDataResult<List<Job>>(this.jobDao.findByJobName(jobName));
+        return new SuccessDataResult<Job>(this.jobDao.findByJobName(jobName));
     }
 
     @Override

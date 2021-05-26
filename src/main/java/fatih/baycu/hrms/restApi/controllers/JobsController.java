@@ -28,7 +28,7 @@ public class JobsController {
     }
 
     @GetMapping("get-by-name")
-    public DataResult<List<Job>> getByJobName(String jobName){
+    public DataResult<Job> getByJobName(String jobName){
         return this.jobService.getByJobName(jobName);
     }
 

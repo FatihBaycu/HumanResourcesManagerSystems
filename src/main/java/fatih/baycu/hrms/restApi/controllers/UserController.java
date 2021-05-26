@@ -4,7 +4,7 @@ import fatih.baycu.hrms.business.abstracts.UserService;
 import fatih.baycu.hrms.core.utilities.results.DataResult;
 import fatih.baycu.hrms.core.utilities.results.Result;
 import fatih.baycu.hrms.core.utilities.results.SuccessDataResult;
-import fatih.baycu.hrms.entities.concretes.User;
+import fatih.baycu.hrms.entities.abstracts.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
