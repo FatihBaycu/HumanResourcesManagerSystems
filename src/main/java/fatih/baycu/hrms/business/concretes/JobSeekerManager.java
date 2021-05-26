@@ -41,44 +41,35 @@ public class JobSeekerManager implements JobSeekerService {
 
     public Result add(JobSeeker jobSeeker){
 
-        if(checkValid(jobSeeker)==false){return new ErrorResult("boş alan kalmamalı");}
-        else if(checkExistByEmail(jobSeeker.getEmail())){return  new ErrorResult("email zaten mevcut");}
-        else if(checkExistByNatiolanityId(jobSeeker.getNatiolanityId())){return  new ErrorResult("bu tc zaten mevcut");}
-        //else if(mernisServiceAdapter.CheckIfRealPerson(jobSeeker)){return  new ErrorResult("Mernis doğrulaması başarısız.");}
-        else {
+         if(checkValid(jobSeeker)==false){return new ErrorResult("boş alan kalmamalı");}
+         if(checkExistByEmail(jobSeeker.getEmail())){return  new ErrorResult("email zaten mevcut");}
+         if(checkExistByNatiolanityId(jobSeeker.getNatiolanityId())){return  new ErrorResult("bu tc zaten mevcut");}
+         //if(mernisServiceAdapter.CheckIfRealPerson(jobSeeker)){return  new ErrorResult("Mernis doğrulaması başarısız.");}
+
 
             User user = new User();
-            user.setCreatedAt(LocalDate.now());
+
             userDao.save(user);
 
             jobSeeker.setUserId(user.getId());
 
+            ActivationCode activationCode=new ActivationCode();
+            activationCodeService.sendVerifedCode(activationCode,user);
 
-
-            //ActivationCode activationCode=new ActivationCode();
-            //activationCodeService.sendVerifedCode(activationCode,user);
-
-            //activationCodeService.checkVerifedCode(activationCode,user,"");
+            activationCodeService.checkVerifedCode(activationCode,user,"");
 
             jobSeekerDao.save(jobSeeker);
 
 
             return new SuccessResult("Added");
-        }
+
     }
 
     @Override
-    public Boolean checkExistByEmail(String email) {
-
-        return jobSeekerDao.existsByEmail(email);
-    }
+    public Boolean checkExistByEmail(String email) {return jobSeekerDao.existsByEmail(email);}
 
     @Override
-    public Boolean checkExistByNatiolanityId(String natiolanityId) {
-
-            return jobSeekerDao.existsByNatiolanityId(natiolanityId);
-
-    }
+    public Boolean checkExistByNatiolanityId(String natiolanityId) {return jobSeekerDao.existsByNatiolanityId(natiolanityId);}
 
 
     @Override
