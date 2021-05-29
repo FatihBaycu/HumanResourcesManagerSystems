@@ -1,13 +1,12 @@
 package fatih.baycu.hrms.business.concretes;
 
 import fatih.baycu.hrms.business.abstracts.JobPostingsService;
-import fatih.baycu.hrms.core.utilities.results.DataResult;
-import fatih.baycu.hrms.core.utilities.results.ErrorResult;
-import fatih.baycu.hrms.core.utilities.results.Result;
-import fatih.baycu.hrms.core.utilities.results.SuccessResult;
+import fatih.baycu.hrms.core.utilities.results.*;
 import fatih.baycu.hrms.dataAccess.abstracts.JobPostingsDao;
 import fatih.baycu.hrms.entities.concretes.JobPostings;
+import fatih.baycu.hrms.entities.concretes.dtos.JobPostingsDetail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class JobPostingsManager implements JobPostingsService {
 
     @Override
     public DataResult<List<JobPostings>> getAll() {
-        return null;
+        return new SuccessDataResult(this.jobPostingsDao.findAll(),"Listed");
     }
 
     @Override
@@ -32,4 +31,23 @@ public class JobPostingsManager implements JobPostingsService {
         return new SuccessResult("Added");
 
     }
+
+    @Override
+    public DataResult<List<JobPostingsDetail>> findAllByActiveTrue() {
+        return new SuccessDataResult(this.jobPostingsDao.findAllByActiveTrue(),"Listed");
+    }
+
+    @Override
+    public DataResult<List<JobPostingsDetail>> findAllByActiveTrueOrderByDate() {
+
+        Sort sort=Sort.by(Sort.Direction.DESC,"createdAt");
+        return new SuccessDataResult<List<JobPostingsDetail>>(this.jobPostingsDao.findAllByActiveTrue(),"Listed");
+    }
+
+    @Override
+    public DataResult<List<JobPostingsDetail>> findAllByActiveTrueAndEmployerId(int employerId) {
+        return new SuccessDataResult(this.jobPostingsDao.findAllByActiveTrueAndEmployerId(employerId),"Listed");
+    }
+
+
 }
