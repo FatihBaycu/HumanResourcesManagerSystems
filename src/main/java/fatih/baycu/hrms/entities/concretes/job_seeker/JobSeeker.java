@@ -1,4 +1,4 @@
-package fatih.baycu.hrms.entities.concretes;
+package fatih.baycu.hrms.entities.concretes.job_seeker;
 
 import fatih.baycu.hrms.entities.abstracts.User;
 import lombok.AllArgsConstructor;

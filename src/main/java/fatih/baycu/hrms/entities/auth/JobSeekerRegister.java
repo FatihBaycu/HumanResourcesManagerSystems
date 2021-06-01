@@ -1,6 +1,6 @@
 package fatih.baycu.hrms.entities.auth;
 
-import fatih.baycu.hrms.entities.concretes.JobSeeker;
+import fatih.baycu.hrms.entities.concretes.job_seeker.JobSeeker;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,13 +1,9 @@
 package fatih.baycu.hrms.business.concretes;
 
-import fatih.baycu.hrms.business.abstracts.ActivationCodeService;
 import fatih.baycu.hrms.business.abstracts.JobSeekerService;
 import fatih.baycu.hrms.core.utilities.results.*;
 import fatih.baycu.hrms.dataAccess.abstracts.JobSeekerDao;
-import fatih.baycu.hrms.dataAccess.abstracts.UserDao;
-import fatih.baycu.hrms.entities.concretes.ActivationCode;
-import fatih.baycu.hrms.entities.concretes.JobSeeker;
-import fatih.baycu.hrms.entities.abstracts.User;
+import fatih.baycu.hrms.entities.concretes.job_seeker.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

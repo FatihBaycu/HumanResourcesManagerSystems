@@ -4,7 +4,7 @@ import fatih.baycu.hrms.business.abstracts.JobPostingsService;
 import fatih.baycu.hrms.core.utilities.results.*;
 import fatih.baycu.hrms.dataAccess.abstracts.JobPostingsDao;
 import fatih.baycu.hrms.entities.concretes.JobPostings;
-import fatih.baycu.hrms.entities.concretes.dtos.JobPostingsDetail;
+import fatih.baycu.hrms.entities.dtos.JobPostingsDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

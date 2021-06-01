@@ -1,10 +1,9 @@
-package fatih.baycu.hrms.entities.concretes.dtos;
+package fatih.baycu.hrms.entities.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Data

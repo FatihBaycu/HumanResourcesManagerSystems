@@ -4,7 +4,6 @@ import fatih.baycu.hrms.business.abstracts.AuthService;
 import fatih.baycu.hrms.core.utilities.results.Result;
 import fatih.baycu.hrms.entities.auth.EmployerRegister;
 import fatih.baycu.hrms.entities.auth.JobSeekerRegister;
-import fatih.baycu.hrms.entities.concretes.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

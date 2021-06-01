@@ -1,9 +1,8 @@
 package fatih.baycu.hrms.business.concretes;
 
 import fatih.baycu.hrms.business.abstracts.CheckService;
-import fatih.baycu.hrms.entities.concretes.JobSeeker;
+import fatih.baycu.hrms.entities.concretes.job_seeker.JobSeeker;
 import fatih.baycu.hrms.webServices.mernisService.TOKKPSPublicSoap;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

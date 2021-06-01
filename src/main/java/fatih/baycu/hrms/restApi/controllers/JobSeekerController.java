@@ -2,8 +2,7 @@ package fatih.baycu.hrms.restApi.controllers;
 
 import fatih.baycu.hrms.business.abstracts.JobSeekerService;
 import fatih.baycu.hrms.core.utilities.results.DataResult;
-import fatih.baycu.hrms.core.utilities.results.Result;
-import fatih.baycu.hrms.entities.concretes.JobSeeker;
+import fatih.baycu.hrms.entities.concretes.job_seeker.JobSeeker;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
