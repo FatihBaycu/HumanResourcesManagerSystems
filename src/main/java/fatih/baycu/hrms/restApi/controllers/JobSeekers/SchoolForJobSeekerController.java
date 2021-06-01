@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/job-seekers/schools")
+@RequestMapping("api/job-seekers/schools-for-job-seejers")
 public class SchoolForJobSeekerController {
 
 

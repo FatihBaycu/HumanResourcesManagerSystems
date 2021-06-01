@@ -8,6 +8,7 @@ import fatih.baycu.hrms.core.utilities.results.SuccessDataResult;
 import fatih.baycu.hrms.core.utilities.results.SuccessResult;
 import fatih.baycu.hrms.dataAccess.abstracts.JobSeeker.TechnologyDao;
 import fatih.baycu.hrms.entities.concretes.job_seeker.Technology;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class TechnologyManager implements TechnologyService {
 
     private TechnologyDao technologyDao;
 
+    @Autowired
     public TechnologyManager(TechnologyDao technologyDao) {
         this.technologyDao = technologyDao;
     }
