@@ -1,19 +1,21 @@
 package fatih.baycu.hrms.entities.concretes.job_seeker;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table(name="schools_for_job_seekers")
+@Table(name="educations")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SchoolForJobSeeker {
+public class Education {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +40,15 @@ public class SchoolForJobSeeker {
     @Column(name = "end_date")
     private LocalDate endDate;
 
+
     @Column(name = "created_at")
     private LocalDate createdAt=LocalDate.now();
+
+
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "educations")
+    private List<Cv> cvs;
 
 
 }

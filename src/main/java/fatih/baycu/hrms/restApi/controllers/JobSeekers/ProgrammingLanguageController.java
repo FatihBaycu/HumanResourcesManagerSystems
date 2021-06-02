@@ -1,11 +1,9 @@
 package fatih.baycu.hrms.restApi.controllers.JobSeekers;
 
 import fatih.baycu.hrms.business.abstracts.JobSeeker.ProgrammingLanguageService;
-import fatih.baycu.hrms.business.abstracts.JobSeeker.SchoolService;
 import fatih.baycu.hrms.core.utilities.results.DataResult;
 import fatih.baycu.hrms.core.utilities.results.Result;
 import fatih.baycu.hrms.entities.concretes.job_seeker.ProgrammingLanguage;
-import fatih.baycu.hrms.entities.concretes.job_seeker.School;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
