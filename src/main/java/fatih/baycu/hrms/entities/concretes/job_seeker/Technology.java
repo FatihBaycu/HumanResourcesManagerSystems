@@ -32,6 +32,4 @@ public class Technology {
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "technologies")
     private List<Cv> cvs;
-
-
 }

@@ -9,6 +9,7 @@ import fatih.baycu.hrms.core.utilities.results.SuccessResult;
 import fatih.baycu.hrms.dataAccess.abstracts.JobSeeker.EducationDao;
 import fatih.baycu.hrms.entities.concretes.job_seeker.Education;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +27,12 @@ public class EducationManager implements EducationService {
     @Override
     public DataResult<List<Education>> getAll() {
         return new SuccessDataResult<List<Education>>(this.educationDao.findAll(),ResultMessages.listed);
+    }
+
+    @Override
+    public DataResult<List<Education>> findAllByJobSeekerId(Sort sort, int jobSeekerId) {
+        sort= Sort.by(Sort.Direction.DESC,"endDate");
+        return new SuccessDataResult<List<Education>>(this.educationDao.findAllByJobSeekerId(sort,jobSeekerId),ResultMessages.listed);
     }
 
     @Override

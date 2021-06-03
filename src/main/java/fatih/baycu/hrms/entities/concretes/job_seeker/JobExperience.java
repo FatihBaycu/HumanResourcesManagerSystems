@@ -22,12 +22,6 @@ public class JobExperience {
     @Column(name="id")
     private int id;
 
-    @Column(name="user_id")
-    private int userId;
-
-    @Column(name = "cv_id")
-    private int cvId;
-
     @Column(name = "company_name")
     private String companyName;
 
@@ -44,6 +38,9 @@ public class JobExperience {
     @Column(name = "created_at")
     private LocalDate createdAt=LocalDate.now();
 
+    @ManyToOne
+    @JoinColumn(name = "job_seeker_id")
+    private JobSeeker jobSeeker;
 
 
     @JsonIgnore
@@ -51,7 +48,8 @@ public class JobExperience {
     private List<Cv> cvs;
 
 
-
-
-
+    public String getEndDate() {
+        if (endDate==null) return "Devam Ediyor.";
+        return this.endDate.toString();
+    }
 }

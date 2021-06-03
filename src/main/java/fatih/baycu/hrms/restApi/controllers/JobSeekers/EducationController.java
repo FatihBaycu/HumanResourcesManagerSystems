@@ -5,6 +5,7 @@ import fatih.baycu.hrms.core.utilities.results.DataResult;
 import fatih.baycu.hrms.core.utilities.results.Result;
 import fatih.baycu.hrms.entities.concretes.job_seeker.Education;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,11 @@ public class EducationController {
 
     @GetMapping("/getall")
     public DataResult<List<Education>> getAll(){return this.educationService.getAll();}
+
+    @GetMapping("/getall-by-jobseeker")
+    public DataResult<List<Education>> findAllByJobSeekerId(int jobSeekerId){
+        return this.educationService.findAllByJobSeekerId(null,jobSeekerId);
+    }
 
     @PostMapping("/add")
     public Result add(@RequestBody Education education){

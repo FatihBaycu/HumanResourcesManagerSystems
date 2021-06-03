@@ -9,6 +9,7 @@ import fatih.baycu.hrms.core.utilities.results.SuccessResult;
 import fatih.baycu.hrms.dataAccess.abstracts.JobSeeker.JobExperienceDao;
 import fatih.baycu.hrms.entities.concretes.job_seeker.JobExperience;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +27,12 @@ public class JobExperienceManager implements JobExperienceService {
     @Override
     public DataResult<List<JobExperience>> getAll() {
         return new SuccessDataResult<>(this.jobExperienceDao.findAll(), ResultMessages.listed);
+    }
+
+    @Override
+    public DataResult<List<JobExperience>> findAllByJobSeekerId(Sort sort, int jobSeekerId) {
+        sort=Sort.by(Sort.Direction.DESC,"endDate");
+        return new SuccessDataResult<>(this.jobExperienceDao.findAllByJobSeekerId(sort,jobSeekerId));
     }
 
     @Override

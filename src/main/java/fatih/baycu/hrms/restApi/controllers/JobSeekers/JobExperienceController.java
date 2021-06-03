@@ -5,6 +5,7 @@ import fatih.baycu.hrms.core.utilities.results.DataResult;
 import fatih.baycu.hrms.core.utilities.results.Result;
 import fatih.baycu.hrms.entities.concretes.job_seeker.JobExperience;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,11 @@ private JobExperienceService jobExperienceService;
     @GetMapping("/getall")
     public DataResult<List<JobExperience>> getAll() {
         return this.jobExperienceService.getAll();
+    }
+
+    @GetMapping("/getall-by-jobseeker")
+    public DataResult<List<JobExperience>> findAllByJobSeekerId(int jobSeekerId)  {
+        return this.jobExperienceService.findAllByJobSeekerId(null,jobSeekerId);
     }
 
     @PostMapping("/add")

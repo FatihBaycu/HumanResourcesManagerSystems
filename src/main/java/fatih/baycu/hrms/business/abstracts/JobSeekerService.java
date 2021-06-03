@@ -9,6 +9,7 @@ import java.util.*;
 public interface JobSeekerService{
 
     DataResult<List<JobSeeker>> getAll();
+    DataResult<JobSeeker> getById(int id);
 
     Boolean checkExistByEmail(String email);
     Boolean checkExistByNatiolanityId(String natiolanityId);
@@ -18,4 +19,5 @@ public interface JobSeekerService{
 
     Result add(JobSeeker jobSeeker);
     Result update(JobSeeker jobSeeker);
+    Result delete(JobSeeker jobSeeker);
 }

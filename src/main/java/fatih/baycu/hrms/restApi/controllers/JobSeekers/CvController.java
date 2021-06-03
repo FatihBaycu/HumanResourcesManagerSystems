@@ -4,6 +4,7 @@ import fatih.baycu.hrms.business.abstracts.JobSeeker.CvService;
 import fatih.baycu.hrms.core.utilities.results.DataResult;
 import fatih.baycu.hrms.core.utilities.results.Result;
 import fatih.baycu.hrms.entities.concretes.job_seeker.Cv;
+import fatih.baycu.hrms.entities.dtos.CvAddDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +25,10 @@ public class CvController {
         return this.cvService.getAll();
     }
 
-    @PostMapping("/add")
-    public Result add(@RequestBody Cv cv) {return this.cvService.add(cv);}
+    @PostMapping("add")
+    public Result add(@RequestBody CvAddDto cvAddDto) {
+        return this.cvService.add(cvAddDto);
+    }
 
     @PostMapping("/update")
     public Result update(@RequestBody Cv cv) {return this.cvService.update(cv);}

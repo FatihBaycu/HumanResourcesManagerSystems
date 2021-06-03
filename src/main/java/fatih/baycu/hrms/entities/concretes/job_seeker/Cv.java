@@ -17,7 +17,6 @@ import java.util.Set;
 @AllArgsConstructor
 public class Cv {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -73,8 +72,10 @@ public class Cv {
             inverseJoinColumns = {@JoinColumn(name = "educations_id")})
     private Set<Education> educations = new HashSet<>();
 
-
-
-
-
+    public Cv(JobSeeker jobSeeker, String githubAddress, String linkedinAddress, String coverLetter) {
+        this.jobSeeker = jobSeeker;
+        this.githubAddress = githubAddress;
+        this.linkedinAddress = linkedinAddress;
+        this.coverLetter = coverLetter;
+    }
 }

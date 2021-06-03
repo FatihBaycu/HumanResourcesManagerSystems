@@ -1,6 +1,7 @@
 package fatih.baycu.hrms.business.concretes;
 
 import fatih.baycu.hrms.business.abstracts.JobSeekerService;
+import fatih.baycu.hrms.business.constant.ResultMessages;
 import fatih.baycu.hrms.core.utilities.results.*;
 import fatih.baycu.hrms.dataAccess.abstracts.JobSeekerDao;
 import fatih.baycu.hrms.entities.concretes.job_seeker.JobSeeker;
@@ -28,6 +29,14 @@ public class JobSeekerManager implements JobSeekerService {
         return new SuccessDataResult<>(result, "Listelendi");
     }
 
+    public DataResult<JobSeeker> getById(int id) {
+        var result = this.jobSeekerDao.findById(id);
+
+        return result.isEmpty()
+                ? new ErrorDataResult<>("İş Arayan bulunamadı")
+                : new SuccessDataResult<>(result.get(), "Bulundu");
+    }
+
     public DataResult<JobSeeker> getByIdentityNumber(String natiolanityId) {
         var result = this.jobSeekerDao.findByNatiolanityId(natiolanityId);
 
@@ -36,19 +45,26 @@ public class JobSeekerManager implements JobSeekerService {
 
     public Result add(JobSeeker jobSeeker) {
         this.jobSeekerDao.save(jobSeeker);
-        return new SuccessResult("Eklendi");
+        return new SuccessResult(ResultMessages.added);
     }
 
     public Result update(JobSeeker jobSeeker) {
-        return null;
+        this.jobSeekerDao.save(jobSeeker);
+        return new SuccessResult(ResultMessages.updated);
     }
 
     public Result delete(JobSeeker jobSeeker) {
-        return null;
+        this.jobSeekerDao.delete(jobSeeker);
+        return new SuccessResult(ResultMessages.deleted);
+
     }
 
-    public Boolean checkExistByEmail(String email) {return jobSeekerDao.existsByEmail(email);}
+    public Boolean checkExistByEmail(String email) {
+        return jobSeekerDao.existsByEmail(email);
+    }
 
-    public Boolean checkExistByNatiolanityId(String natiolanityId) {return jobSeekerDao.existsByNatiolanityId(natiolanityId);}
+    public Boolean checkExistByNatiolanityId(String natiolanityId) {
+        return jobSeekerDao.existsByNatiolanityId(natiolanityId);
+    }
 
 }

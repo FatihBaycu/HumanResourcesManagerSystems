@@ -9,6 +9,7 @@ import java.util.List;
 public interface TechnologyService {
 
     DataResult<List<Technology>> getAll();
+    DataResult<Technology> getById(int id);
 
     Result add(Technology technology);
     Result update(Technology technology);
