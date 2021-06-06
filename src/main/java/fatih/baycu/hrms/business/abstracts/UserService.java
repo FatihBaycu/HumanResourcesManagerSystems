@@ -4,15 +4,11 @@ import fatih.baycu.hrms.core.utilities.results.DataResult;
 import fatih.baycu.hrms.core.utilities.results.Result;
 import fatih.baycu.hrms.entities.abstracts.User;
 
-import java.util.*;
+import java.util.List;
 
-public interface UserService {
+public interface UserService<T extends User> {
+    DataResult<List<T>> getAll();
 
-    DataResult<List<User>> getAll();
-    DataResult<User> getById(int id);
-    DataResult<User> getByEmail(String email);
-
-    Result add(User user);
-    Result update(User user);
+    Result add(T t);
 
 }

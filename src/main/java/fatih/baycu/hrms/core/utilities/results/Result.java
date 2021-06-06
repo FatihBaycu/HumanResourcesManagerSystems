@@ -1,7 +1,7 @@
 package fatih.baycu.hrms.core.utilities.results;
 
-public class Result<T> {
-    private boolean success;
+public class Result {
+    private final boolean success;
     private String message;
 
     public Result(boolean success) {
@@ -14,10 +14,10 @@ public class Result<T> {
     }
 
     public boolean isSuccess() {
-        return success;
+        return this.success;
     }
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 }

@@ -1,21 +1,23 @@
 package fatih.baycu.hrms.business.concretes;
 
 import fatih.baycu.hrms.business.abstracts.ActivationCodeService;
-import fatih.baycu.hrms.core.utilities.results.*;
+import fatih.baycu.hrms.business.constant.Messages;
+import fatih.baycu.hrms.core.utilities.results.DataResult;
+import fatih.baycu.hrms.core.utilities.results.Result;
+import fatih.baycu.hrms.core.utilities.results.SuccessDataResult;
+import fatih.baycu.hrms.core.utilities.results.SuccessResult;
+import fatih.baycu.hrms.core.utilities.verificationtool.CodeGenerator;
 import fatih.baycu.hrms.dataAccess.abstracts.ActivationCodeDao;
 import fatih.baycu.hrms.entities.concretes.ActivationCode;
-import fatih.baycu.hrms.entities.abstracts.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ActivationCodeManager implements ActivationCodeService {
-
-
-
     private final ActivationCodeDao activationCodeDao;
 
     @Autowired
@@ -25,39 +27,25 @@ public class ActivationCodeManager implements ActivationCodeService {
 
     @Override
     public DataResult<List<ActivationCode>> getAll() {
-        return null;
+        return new SuccessDataResult<List<ActivationCode>>(this.activationCodeDao.findAll(), Messages.activationCodeListed);
     }
 
-    public DataResult<ActivationCode> getByCode(String code) {
-        var result = activationCodeDao.findByCode(code);
-
-        return result == null
-                ? new ErrorDataResult<>("Aktivasyon kodu bulunamadı")
-                : new SuccessDataResult<>(result, "Activasyon kodu bulundu");
-    }
-
+    @Override
     public Result add(ActivationCode activationCode) {
-        var checkCode = checkExistingCode(activationCode.getCode());
-
-        if (checkCode)
-            return new ErrorResult("Bu kod zaten mevcut");
-
-        this.activationCodeDao.save(activationCode);
-        return new SuccessDataResult<>(activationCode, "Oluşturuldu");
+        activationCode.setExpirationDate(LocalDateTime.now().plusMinutes(5));
+        activationCode.setUid(CodeGenerator.generateUuidCode());
+        activationCodeDao.save(activationCode);
+        return new SuccessResult(Messages.activationCodeAdded);
     }
 
+    @Override
     public Result update(ActivationCode activationCode) {
-        this.activationCodeDao.save(activationCode);
-        return new SuccessDataResult<>(activationCode, "Güncellendi");
+        activationCodeDao.save(activationCode);
+        return new SuccessResult(Messages.activationCodeUpdated);
     }
 
-    public Result delete(ActivationCode activationCode) {
-        this.activationCodeDao.save(activationCode);
-        return new SuccessResult("Silindi");
+    @Override
+    public DataResult<Optional<ActivationCode>> getByUserUid(String uid) {
+        return new SuccessDataResult<Optional<ActivationCode>>(activationCodeDao.findByUserUid(uid));
     }
-
-    private boolean checkExistingCode(String code) {
-        return getByCode(code).isSuccess();
-    }
-    
 }

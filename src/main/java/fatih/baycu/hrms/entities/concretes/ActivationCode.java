@@ -1,28 +1,51 @@
 package fatih.baycu.hrms.entities.concretes;
 
+import fatih.baycu.hrms.entities.abstracts.User;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+@Data
 @Entity
-@Table(name = "mail_activation_codes")
-public @Data
-class ActivationCode {
-     @Id
-     @GeneratedValue(strategy =GenerationType.IDENTITY)
-     @Column(name = "id")
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "activation_codes")
+public class ActivationCode {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-     
-    @Column(name = "user_id")
-    private int userId;
-    
-    @Column(name = "code")
-    private String code;
 
-    @Column(name = "created_at")
-    private LocalDate createdAt= LocalDate.now();;
+    //@Column(name="user_id")
+    //private int userId;
 
-    @Column(name = "activate")
-    private  boolean activate=true;
+    @Column(name = "uid")
+    private String uid;
+
+    @Column(name = "activation_code")
+    private String activationCode;
+
+    @Column(name = "expiration_date")
+    private LocalDateTime expirationDate;
+
+    @Column(name = "is_confirmed")
+    private boolean isConfirmed;
+
+    @Column(name = "activation_date")
+    private LocalDateTime activationDate;
+
+    @Column(name = "created_date")
+    private LocalDateTime createdDate = LocalDateTime.now();
+
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
 }
